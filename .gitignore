@@ -1,0 +1,65 @@
+﻿# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Visual Studio and editors
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Runtime logs
+*.log
+
+# Data files
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+
+# Model weights and exports
+models/*
+!models/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Generated outputs
+outputs/*
+!outputs/.gitkeep
+runs/
+
+# Media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# Operating system files
+Thumbs.db
+Desktop.ini
+.DS_Store
