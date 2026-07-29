@@ -8,6 +8,12 @@ version = "0.1.0"
 description = "DashGuard video and telemetry risk-event pipeline"
 readme = "README.md"
 requires-python = ">=3.11"
+dependencies = [
+    "numpy==2.4.4",
+    "opencv-python==5.0.0.93",
+    "ultralytics==8.4.107",
+    "lap==0.5.13",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
