@@ -13,6 +13,9 @@ dependencies = [
     "opencv-python==5.0.0.93",
     "ultralytics==8.4.107",
     "lap==0.5.13",
+    "onnx==1.22.0",
+    "onnxruntime==1.28.0",
+    "onnxslim==0.1.95",
 ]
 
 [tool.setuptools]
