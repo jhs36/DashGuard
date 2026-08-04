@@ -73,7 +73,7 @@ DashGuard는 영상 속 차량, 보행자 등 주요 도로 객체의 움직임�
 - Ultralytics YOLO
 - ByteTrack
 - pandas / NumPy
-- Gradio
+- Gradio 6.22.0
 - ONNX Runtime
 
 기술 스택은 실제 구현 및 호환성 검증 결과에 따라 변경될 수 있다.
@@ -89,9 +89,30 @@ DashGuard는 영상 속 차량, 보행자 등 주요 도로 객체의 움직임�
 
 ## 9. 현재 상태
 
-Day 1 환경 구축 및 프로젝트 범위 정의 단계이다.
+Day 8 Gradio 로컬 통합 데모까지 구현을 완료했다. 현재 데모는 기존 영상 표준화, PyTorch CPU 탐지·추적, risk proxy, telemetry 동기화, event 후보와 clip 생성을 하나의 격리된 run workspace에서 실행한다.
 
-## 10. 로컬 개발환경 시작
+검증 범위와 실제 30초 browser run 결과는 `docs/day8_gradio_integration_validation.md`에 기록되어 있다.
+
+## 10. Day 8 Gradio 데모 실행
+
+기준 환경은 Python 3.11과 Gradio 6.22.0이다. 저장소 root의 Windows PowerShell에서 실행한다.
+
+```powershell
+Set-Location "E:\Projects\DashGuard"
+& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day8_gradio_demo.py"
+```
+
+기본 주소는 `http://127.0.0.1:7860`이며 localhost에만 bind하고 `share=False`로 실행한다.
+
+- 입력 영상은 최대 30초다.
+- backend는 PyTorch CPU, model은 `yolo11n.pt`로 고정된다.
+- telemetry CSV는 선택 입력이며, 미입력 시 deterministic synthetic telemetry를 사용한다.
+- 주요 출력은 주석 영상, risk·telemetry PNG, event 표, 첫 event clip과 전체 clip 목록이다.
+- 각 결과는 `outputs/day8/runs/<run_id>/`에 격리되며 브라우저에는 `published/` copy만 제공한다.
+
+Risk proxy는 실제 거리, TTC 또는 사고 확률이 아니다. Synthetic telemetry는 실제 센서 정확도 근거가 아니며, PyTorch CPU full pipeline은 30 FPS 실시간 처리를 보장하지 않는다. ONNX full-video tracking, DirectML, 외부 hosting·streaming 및 다중 사용자 배포는 지원하거나 검증하지 않았다.
+
+## 11. 로컬 개발환경 시작
 
 ### 가상환경 생성
 
@@ -146,7 +167,7 @@ python .\scripts\yolo_smoke.py
 
 원본 이미지, 모델 가중치, 생성 결과는 Git에 포함하지 않는다.
 
-## 11. Day 1 검증 기준선
+## 12. Day 1 검증 기준선
 
 - 운영체제: Windows
 - 개발 도구: VS Code
