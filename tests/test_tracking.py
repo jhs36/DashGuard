@@ -252,6 +252,20 @@ def test_tracker_passes_exact_track_arguments_and_returns_tracks() -> None:
     ]
 
 
+def test_tracker_returns_empty_when_bytetrack_has_no_confirmed_ids() -> None:
+    model = Mock()
+    model.names = {0: "person"}
+    model.track.return_value = [make_result(track_ids=None)]
+
+    tracks = UltralyticsByteTracker(model).track(
+        np.zeros((2, 2, 3), dtype=np.uint8),
+        frame_index=0,
+        timestamp_sec=0.0,
+    )
+
+    assert tracks == []
+
+
 def test_tracker_calculates_target_ids_from_list_model_names() -> None:
     model = Mock()
     model.names = ["dog", "truck", "cat", "person"]

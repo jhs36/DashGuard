@@ -234,8 +234,12 @@ class UltralyticsByteTracker:
                 f"received {result_count}"
             )
 
+        result = results[0]
+        if result.boxes is not None and result.boxes.id is None:
+            return []
+
         return convert_ultralytics_result(
-            results[0],
+            result,
             frame_index=frame_index,
             timestamp_sec=timestamp_sec,
         )
