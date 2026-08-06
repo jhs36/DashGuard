@@ -1,4 +1,4 @@
-﻿# Python bytecode and caches
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
 *.pyd
@@ -66,3 +66,7 @@ Desktop.ini
 
 # Python package build metadata
 *.egg-info/
+
+# Local review and export archives
+*.zip
+*.7z

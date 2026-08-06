@@ -64,7 +64,14 @@ Local `outputs/`는 생성 산출물 workspace이며 GitHub 문서 경로가 아
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
+python -m pip install -e .
+python -m pip check
 ```
+
+DashGuard는 `src/` layout을 사용하므로 `requirements.txt` 설치만으로는
+`dashguard` package를 import할 수 없다. 저장소 root에서
+`python -m pip install -e .`를 실행해야 CLI, test, Gradio demo가
+프로젝트 package를 정상적으로 찾는다.
 
 ```powershell
 winget install --id Gyan.FFmpeg -e --source winget
@@ -101,6 +108,15 @@ python scripts/yolo_smoke.py
 - ONNX: `yolo11n.pt`에서 local FP32 export한 `yolo11n_fp32_opset20_640.onnx`를 consistency·benchmark에만 사용한다.
 
 공식 dataset 원본과 local 제3자 archive를 같은 출처로 취급하지 않는다. 영상·dataset·model의 상세 provenance와 배포 전 재확인 항목은 [data_model_provenance.md](docs/data_model_provenance.md)를 따른다.
+
+Fresh clone에는 `yolo11n.pt`, 실제 도로 영상, 기존 `outputs/` 결과가
+포함되지 않는다. 위의 `YOLO('yolo11n.pt')` 명령은 네트워크가 가능한
+환경에서 pretrained weight를 저장소 root에 준비하고 load 여부를 확인한다.
+
+Gradio 서버 자체는 model 파일이 없어도 열릴 수 있지만, 실제 영상 분석을
+실행하려면 `yolo11n.pt`가 존재하거나 `--model-path`로 유효한 경로를
+지정해야 한다. 입력 영상은 Git 밖에서 준비한 최대 30초의 local MP4를
+사용한다.
 
 ## 8. Risk proxy
 

@@ -359,8 +359,8 @@ Event 구간은 risk proxy가 sample용 threshold 0.70 이상인 frame candidate
 저장소 root의 Windows PowerShell에서 실행한다.
 
 ```powershell
-Set-Location "E:\Projects\DashGuard"
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day8_gradio_demo.py"
+# DashGuard repository root에서 실행
+& ".\.venv\Scripts\python.exe" ".\scripts\day8_gradio_demo.py"
 ```
 
 기본 접속 주소는 `http://127.0.0.1:7860`이다. 외부 interface에 bind하지 않고 `share=False`로 실행한다. 새 분석은 새 run ID와 workspace를 만들며 기존 run을 덮어쓰지 않는다.
@@ -368,14 +368,14 @@ Set-Location "E:\Projects\DashGuard"
 ### 검증 명령
 
 ```powershell
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" -m pytest `
+& ".\.venv\Scripts\python.exe" -m pytest `
   ".\tests\test_day8_workflow.py" `
   ".\tests\test_day8_presentation.py" `
   ".\tests\test_day8_gradio_app.py" -q
 
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" -m pytest -q
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" -m pip check
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day8_gradio_demo.py" --help
+& ".\.venv\Scripts\python.exe" -m pytest -q
+& ".\.venv\Scripts\python.exe" -m pip check
+& ".\.venv\Scripts\python.exe" ".\scripts\day8_gradio_demo.py" --help
 ```
 
 `requirements-lock.txt` exact 확인은 현재 environment의 `pip freeze --all` 출력을 줄바꿈 정규화 후 lock과 byte-for-byte 비교한다. 실제 browser run 재현에는 FFmpeg/FFprobe와 `libx264`, `yolo11n.pt`, 유효한 최대 30초 영상이 필요하다.

@@ -318,7 +318,7 @@ total_score
 저장소 루트의 PowerShell에서 다음 명령을 실행한다.
 
 ```powershell
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day5_score_tracks.py" --input-csv ".\outputs\day3\csv\day3_tracks.csv" --input-video ".\outputs\day3\standardized\day3_baseline_input.mp4" --output-csv ".\outputs\day5\csv\day5_risk_scores.csv" --output-plot ".\outputs\day5\plots\day5_frame_max_risk_proxy.png"
+& ".\.venv\Scripts\python.exe" ".\scripts\day5_score_tracks.py" --input-csv ".\outputs\day3\csv\day3_tracks.csv" --input-video ".\outputs\day3\standardized\day3_baseline_input.mp4" --output-csv ".\outputs\day5\csv\day5_risk_scores.csv" --output-plot ".\outputs\day5\plots\day5_frame_max_risk_proxy.png"
 ```
 
 산출물은 다음과 같다.

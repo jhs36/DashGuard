@@ -285,12 +285,12 @@ total_score_gte_threshold
 
 ## 12. 재현 명령
 
-다음 명령은 repository root인 `E:\Projects\DashGuard`에서 PowerShell로 순서대로 실행한다. project Python은 `E:\Projects\DashGuard\.venv\Scripts\python.exe`를 사용한다.
+다음 명령은 repository root에서 PowerShell로 순서대로 실행한다. project Python은 `.\.venv\Scripts\python.exe`를 사용한다.
 
 ### 1. synthetic telemetry 생성
 
 ```powershell
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day6_generate_synthetic_telemetry.py" `
+& ".\.venv\Scripts\python.exe" ".\scripts\day6_generate_synthetic_telemetry.py" `
   --output-csv ".\outputs\day6\telemetry\day6_synthetic_telemetry_usercheck_20260801.csv" `
   --duration-sec 30.0 `
   --frequency-hz 10.0
@@ -299,7 +299,7 @@ total_score_gte_threshold
 ### 2. risk CSV와 telemetry 동기화
 
 ```powershell
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day6_sync_telemetry.py" `
+& ".\.venv\Scripts\python.exe" ".\scripts\day6_sync_telemetry.py" `
   --risk-csv ".\outputs\day5\csv\day5_risk_scores.csv" `
   --telemetry-csv ".\outputs\day6\telemetry\day6_synthetic_telemetry_usercheck_20260801.csv" `
   --output-csv ".\outputs\day6\csv\day6_risk_telemetry_sync_roundtrip_check.csv" `
@@ -310,7 +310,7 @@ total_score_gte_threshold
 ### 3. event timeline과 JSON 생성
 
 ```powershell
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day6_detect_events.py" `
+& ".\.venv\Scripts\python.exe" ".\scripts\day6_detect_events.py" `
   --input-csv ".\outputs\day6\csv\day6_risk_telemetry_sync_roundtrip_check.csv" `
   --input-video ".\outputs\day3\videos\day3_baseline.mp4" `
   --output-timeline-csv ".\outputs\day6\timeline\day6_frame_risk_timeline.csv" `
@@ -325,7 +325,7 @@ total_score_gte_threshold
 ### 4. event clip 생성
 
 ```powershell
-& "E:\Projects\DashGuard\.venv\Scripts\python.exe" ".\scripts\day6_extract_event_clips.py" `
+& ".\.venv\Scripts\python.exe" ".\scripts\day6_extract_event_clips.py" `
   --events-json ".\outputs\day6\events\day6_event_candidates.json" `
   --input-video ".\outputs\day3\videos\day3_baseline.mp4" `
   --output-dir ".\outputs\day6\clips" `
